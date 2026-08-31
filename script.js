@@ -27,190 +27,170 @@ const musicBtn =
 
 if (sealButton) {
 
-    sealButton.addEventListener(
-        "click",
-        function () {
+    sealButton.addEventListener("click", function () {
+
+        /* Prevent double click */
+
+        sealButton.disabled = true;
 
 
-            /* Prevent double click */
+        /* ==========================================
+           START MUSIC
+           Starts immediately after user interaction
+        ========================================== */
 
-            sealButton.disabled = true;
+        if (music) {
 
+            music.volume = 0.5;
+            music.currentTime = 0;
 
-            /* Press animation */
+            const playPromise = music.play();
 
-            sealButton.style.transform =
-                "translateX(-50%) scale(0.85)";
+            if (playPromise !== undefined) {
 
+                playPromise
+                    .then(function () {
 
-            setTimeout(
-                function () {
+                        console.log("Wedding music started");
 
-                    sealButton.style.transform =
-                        "translateX(-50%) scale(1.10)";
+                        if (musicBtn) {
+                            musicBtn.textContent = "❚❚";
+                        }
 
-                },
-                170
-            );
+                    })
+                    .catch(function (error) {
 
-
-            setTimeout(
-                function () {
-
-                    sealButton.style.transform =
-                        "translateX(-50%) scale(1)";
-
-                },
-                340
-            );
-
-
-            /* Show welcome overlay */
-
-            setTimeout(
-                function () {
-
-                    if (cardReveal) {
-
-                        cardReveal.classList.add(
-                            "show"
+                        console.log(
+                            "Music could not start:",
+                            error
                         );
 
-                    }
-
-                },
-                420
-            );
-
-
-            /* Start music */
-
-            if (music) {
-
-                music.play()
-
-                    .then(
-                        function () {
-
-                            if (musicBtn) {
-
-                                musicBtn.textContent =
-                                    "❚❚";
-
-                            }
-
+                        if (musicBtn) {
+                            musicBtn.textContent = "♫";
                         }
-                    )
 
-                    .catch(
-                        function () {
+                    });
 
-                            if (musicBtn) {
+            }
 
-                                musicBtn.textContent =
-                                    "♫";
+        }
 
-                            }
 
-                        }
-                    );
+        /* ==========================================
+           SEAL PRESS ANIMATION
+        ========================================== */
+
+        sealButton.style.transform =
+            "translateX(-50%) scale(0.85)";
+
+
+        setTimeout(function () {
+
+            sealButton.style.transform =
+                "translateX(-50%) scale(1.10)";
+
+        }, 170);
+
+
+        setTimeout(function () {
+
+            sealButton.style.transform =
+                "translateX(-50%) scale(1)";
+
+        }, 340);
+
+
+        /* ==========================================
+           SHOW WELCOME / CARD REVEAL
+        ========================================== */
+
+        setTimeout(function () {
+
+            if (cardReveal) {
+
+                cardReveal.classList.add("show");
+
+            }
+
+        }, 420);
+
+
+        /* ==========================================
+           OPEN MAIN WEBSITE
+        ========================================== */
+
+        setTimeout(function () {
+
+            if (mainContent) {
+
+                mainContent.style.display = "block";
 
             }
 
 
-            /* Open main website */
+            if (openingScreen) {
 
-            setTimeout(
-                function () {
+                openingScreen.classList.add("hide");
 
-
-                    if (mainContent) {
-
-                        mainContent.style.display =
-                            "block";
-
-                    }
+            }
 
 
-                    if (openingScreen) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
-                        openingScreen.classList.add(
-                            "hide"
-                        );
+        }, 1800);
 
-                    }
-
-
-                    window.scrollTo(
-                        {
-                            top: 0,
-                            behavior: "smooth"
-                        }
-                    );
-
-
-                },
-                1800
-            );
-
-
-        }
-    );
+    });
 
 }
 
 
 /* ==================================================
-   MUSIC BUTTON
+   MUSIC ON / OFF BUTTON
 ================================================== */
 
 if (musicBtn && music) {
 
-    musicBtn.addEventListener(
-        "click",
-        function () {
+    musicBtn.addEventListener("click", function () {
 
+        if (music.paused) {
 
-            if (music.paused) {
+            music.volume = 0.5;
 
+            music.play()
+                .then(function () {
 
-                music.play()
+                    musicBtn.textContent = "❚❚";
 
-                    .then(
-                        function () {
+                    console.log("Music playing");
 
-                            musicBtn.textContent =
-                                "❚❚";
+                })
+                .catch(function (error) {
 
-                        }
-                    )
-
-                    .catch(
-                        function () {
-
-                            musicBtn.textContent =
-                                "♫";
-
-                        }
+                    console.log(
+                        "Music play error:",
+                        error
                     );
 
+                    musicBtn.textContent = "♫";
 
-            }
-
-            else {
-
-
-                music.pause();
-
-                musicBtn.textContent =
-                    "♫";
-
-
-            }
-
+                });
 
         }
-    );
+
+        else {
+
+            music.pause();
+
+            musicBtn.textContent = "♫";
+
+            console.log("Music paused");
+
+        }
+
+    });
 
 }
 
@@ -239,7 +219,6 @@ const weddingDate =
 
 function updateCountdown() {
 
-
     const now =
         new Date().getTime();
 
@@ -261,7 +240,7 @@ function updateCountdown() {
         document.getElementById("seconds");
 
 
-    /* Stop if countdown elements are not present */
+    /* Stop if countdown is not on page */
 
     if (
         !daysElement ||
@@ -275,30 +254,21 @@ function updateCountdown() {
     }
 
 
-    /* Wedding reached */
+    /* Wedding date reached */
 
     if (distance <= 0) {
 
-
-        daysElement.textContent =
-            "00";
-
-        hoursElement.textContent =
-            "00";
-
-        minutesElement.textContent =
-            "00";
-
-        secondsElement.textContent =
-            "00";
-
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
 
         return;
 
     }
 
 
-    /* Days */
+    /* Calculate time */
 
     const days =
         Math.floor(
@@ -307,84 +277,59 @@ function updateCountdown() {
         );
 
 
-    /* Hours */
-
     const hours =
         Math.floor(
             (
                 distance %
                 (1000 * 60 * 60 * 24)
-            )
-            /
+            ) /
             (1000 * 60 * 60)
         );
 
-
-    /* Minutes */
 
     const minutes =
         Math.floor(
             (
                 distance %
                 (1000 * 60 * 60)
-            )
-            /
+            ) /
             (1000 * 60)
         );
 
-
-    /* Seconds */
 
     const seconds =
         Math.floor(
             (
                 distance %
                 (1000 * 60)
-            )
-            /
+            ) /
             1000
         );
 
 
-    /* Show countdown */
+    /* Display countdown */
 
     daysElement.textContent =
-        String(days).padStart(
-            2,
-            "0"
-        );
-
+        String(days).padStart(2, "0");
 
     hoursElement.textContent =
-        String(hours).padStart(
-            2,
-            "0"
-        );
-
+        String(hours).padStart(2, "0");
 
     minutesElement.textContent =
-        String(minutes).padStart(
-            2,
-            "0"
-        );
-
+        String(minutes).padStart(2, "0");
 
     secondsElement.textContent =
-        String(seconds).padStart(
-            2,
-            "0"
-        );
-
+        String(seconds).padStart(2, "0");
 
 }
 
 
-/* Run immediately */
+/* Run countdown immediately */
 
 updateCountdown();
 
 
-/* Update every second */
+/* Update countdown every second */
 
 setInterval(
     updateCountdown,
@@ -396,68 +341,73 @@ setInterval(
    PAGE LOAD ANIMATION
 ================================================== */
 
-window.addEventListener(
-    "load",
-    function () {
+window.addEventListener("load", function () {
 
+    if (openingScreen) {
 
-        if (openingScreen) {
-
-            openingScreen.classList.add(
-                "loaded"
-            );
-
-        }
-
+        openingScreen.classList.add("loaded");
 
     }
-);
+
+});
 
 
 /* ==================================================
-   STOP MUSIC IF AUDIO ENDS
-   Normally music loops, but this is a safety check
+   MUSIC SAFETY CHECK
 ================================================== */
 
 if (music) {
 
-    music.addEventListener(
-        "ended",
-        function () {
+    music.addEventListener("ended", function () {
 
+        if (musicBtn) {
 
-            if (musicBtn) {
-
-                musicBtn.textContent =
-                    "♫";
-
-            }
-
+            musicBtn.textContent = "♫";
 
         }
-    );
+
+    });
+
+
+    /* Audio loading error */
+
+    music.addEventListener("error", function () {
+
+        console.log(
+            "The music.mp3 file could not be loaded."
+        );
+
+        if (musicBtn) {
+
+            musicBtn.textContent = "♫";
+
+        }
+
+    });
 
 }
 
 
 /* ==================================================
-   ESC KEY - OPTIONAL
-   Allows testing the main page quickly on laptop
+   ESC KEY
+   Useful while testing on laptop
 ================================================== */
 
 document.addEventListener(
     "keydown",
     function (event) {
 
-
         if (
             event.key === "Escape" &&
             openingScreen
         ) {
 
+            if (mainContent) {
 
-            mainContent.style.display =
-                "block";
+                mainContent.style.display =
+                    "block";
+
+            }
 
 
             openingScreen.classList.add(
@@ -470,9 +420,7 @@ document.addEventListener(
                 0
             );
 
-
         }
-
 
     }
 );
