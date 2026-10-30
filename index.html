@@ -1,68 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#46583d">
+  <meta name="theme-color" content="#3a4832">
   <meta name="description" content="Wedding invitation of Muhammed Hisham and Aneena Jubin">
   <title>Muhammed Hisham & Aneena Jubin | Wedding Invitation</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+
+  <!-- Floating Ambient Particles Container -->
+  <div id="petalsContainer" class="petals-container" aria-hidden="true"></div>
+
+  <!-- Left Side Hamburger Toggle Button -->
+  <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open Navigation Menu" aria-expanded="false" hidden>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </button>
+
+  <!-- Left Slide-Out Navigation Drawer -->
+  <aside id="sideNav" class="side-nav" aria-label="Navigation Drawer">
+    <div class="side-nav-header">
+      <span class="side-nav-monogram">H & A</span>
+      <p class="side-nav-date">27 • 12 • 2026</p>
+      <button id="menuClose" class="menu-close" type="button" aria-label="Close Navigation Menu">✕</button>
+    </div>
+    <div class="side-nav-divider">❦</div>
+    <nav class="side-nav-links">
+      <a href="#invitationSection" class="nav-link"><span>01</span> The Invitation</a>
+      <a href="#scratchSection" class="nav-link"><span>02</span> Announcement</a>
+      <a href="#countdownSection" class="nav-link"><span>03</span> Countdown</a>
+      <a href="#venueSection" class="nav-link"><span>04</span> Venue & Map</a>
+      <a href="#closingSection" class="nav-link"><span>05</span> Gratitude</a>
+    </nav>
+    <div class="side-nav-footer">
+      <p>BUM Hall, Pookkottur</p>
+      <small>Malappuram, Kerala</small>
+    </div>
+  </aside>
+  <div id="navBackdrop" class="nav-backdrop"></div>
+
+  <!-- Opening Portal / Cover -->
   <section id="opening" class="opening" aria-label="Wedding invitation cover">
-    <div class="door left-door"><span class="door-decoration">❦</span></div>
-    <div class="door right-door"><span class="door-decoration">❦</span></div>
+    <div class="cover-photo-backdrop" style="background-image: url('couple-cover.jpg');"></div>
+    <div class="door left-door">
+      <div class="door-inner-frame"></div>
+      <span class="door-decoration">❦</span>
+    </div>
+    <div class="door right-door">
+      <div class="door-inner-frame"></div>
+      <span class="door-decoration">❦</span>
+    </div>
     <div class="door-seam"></div>
+    
     <button id="openButton" class="cover-seal" type="button" aria-label="Open invitation">
-      <span class="seal-ornament">❦</span><strong>H & A</strong><small>TAP TO OPEN</small><span class="seal-ornament">✧</span>
+      <span class="seal-glow"></span>
+      <span class="seal-ornament">❦</span>
+      <strong>H & A</strong>
+      <small>TAP TO OPEN</small>
+      <span class="seal-ornament">✧</span>
     </button>
-    <p class="cover-caption">THE WEDDING INVITATION</p>
+    <p class="cover-caption">THE WEDDING CELEBRATION</p>
   </section>
 
+  <!-- Main Invitation Website -->
   <main id="website" hidden>
-    <section class="page invitation-page floral-page">
-      <div class="page-border"></div><span class="corner-flower flower-tl">❦</span><span class="corner-flower flower-br">❦</span>
+    
+    <!-- Hero / Main Invitation Section -->
+    <section id="invitationSection" class="page invitation-page">
+      <div class="couple-bg-layer" style="background-image: url('couple-bg.jpg');"></div>
+      <div class="page-border"></div>
+      <span class="corner-flower flower-tl">❦</span>
+      <span class="corner-flower flower-br">❦</span>
+      
       <div class="page-content reveal">
         <p class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
         <div class="ornament">✦ ❦ ✦</div>
         <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
-        <p class="invitation-text">With the blessings of Allah,<br>we cordially request the honour<br>of your presence at the wedding of</p>
-        <h1 class="couple-names"><span>MUHAMMED HISHAM</span><em>&</em><span>ANEENA JUBIN</span></h1>
+        <p class="invitation-text">With the blessings of Allah,<br>we cordially request the honour of your presence<br>at the wedding celebration of</p>
+        
+        <h1 class="couple-names">
+          <span>MUHAMMED HISHAM</span>
+          <em>&</em>
+          <span>ANEENA JUBIN</span>
+        </h1>
+        
         <div class="ornament">❦</div>
-        <p class="invitation-text">As we begin this beautiful journey together,<br>your presence and prayers will make<br>our celebration truly memorable.</p>
-        <p class="scroll-prompt">SCROLL TO REVEAL ↓</p>
+        <p class="invitation-text quote-text">"And of His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them."</p>
+        <p class="scroll-prompt">SCROLL TO REVEAL DETAILS ↓</p>
       </div>
     </section>
 
+    <!-- Interactive Scratch Reveal Section -->
     <section class="page scratch-page" id="scratchSection">
       <div class="page-content reveal">
         <p class="eyebrow">A SPECIAL ANNOUNCEMENT</p>
         <h2>Our Wedding Day</h2>
         <div class="ornament">✦ ❦ ✦</div>
-        <p class="section-description">Scratch the card to reveal<br>the details of our special day.</p>
+        <p class="section-description">Scratch the card to unveil<br>the date & details of our union.</p>
+        
         <div class="scratch-card">
           <div class="scratch-result">
-            <p class="scratch-label">THE WEDDING OF</p><p class="scratch-couple">HISHAM & ANEENA</p>
-            <strong class="scratch-date">27</strong><p class="scratch-month">DECEMBER 2026</p><p class="scratch-day">SUNDAY</p>
-            <div class="scratch-divider"></div><p class="scratch-time">4:00 PM – 8:00 PM</p>
-            <p class="scratch-venue">BUM HALL</p><p class="scratch-place">POOKKOTTUR, MALAPPURAM</p>
+            <p class="scratch-label">THE WEDDING OF</p>
+            <p class="scratch-couple">HISHAM & ANEENA</p>
+            <strong class="scratch-date">27</strong>
+            <p class="scratch-month">DECEMBER 2026</p>
+            <p class="scratch-day">SUNDAY</p>
+            <div class="scratch-divider"></div>
+            <p class="scratch-time">4:00 PM – 8:00 PM</p>
+            <p class="scratch-venue">BUM HALL</p>
+            <p class="scratch-place">POOKKOTTUR, MALAPPURAM</p>
           </div>
           <canvas id="scratchCanvas" aria-label="Scratch to reveal wedding details"></canvas>
         </div>
+        
         <button id="revealButton" class="text-button" type="button">Reveal without scratching</button>
         <p class="scratch-footnote">A BEAUTIFUL BEGINNING AWAITS</p>
       </div>
     </section>
 
-    <section class="page countdown-page">
+    <!-- Countdown Timer Section -->
+    <section id="countdownSection" class="page countdown-page">
       <div class="page-content reveal">
         <p class="eyebrow">THE CELEBRATION BEGINS IN</p>
-        <h2>Counting Down to Forever</h2><div class="ornament">❦</div>
+        <h2>Counting Down to Forever</h2>
+        <div class="ornament">❦</div>
         <div class="countdown-grid">
           <div class="time-box"><strong id="days">00</strong><span>DAYS</span></div>
           <div class="time-box"><strong id="hours">00</strong><span>HOURS</span></div>
@@ -73,33 +142,46 @@
       </div>
     </section>
 
-    <section class="page venue-page floral-page">
+    <!-- Venue & Location Section -->
+    <section id="venueSection" class="page venue-page">
       <div class="page-border"></div>
       <div class="page-content reveal">
-        <p class="eyebrow">JOIN US FOR OUR CELEBRATION</p><h2>Wedding Venue</h2><div class="ornament">✦ ❦ ✦</div>
+        <p class="eyebrow">JOIN US FOR OUR CELEBRATION</p>
+        <h2>Wedding Venue</h2>
+        <div class="ornament">✦ ❦ ✦</div>
         <div class="venue-card">
-          <p class="eyebrow">THE CELEBRATION</p><h3>BUM HALL</h3>
-          <p class="venue-address">Pookkottur<br>Malappuram, Kerala</p><div class="venue-divider"></div>
-          <p class="venue-date">Sunday, 27 December 2026</p><p class="venue-time">4:00 PM – 8:00 PM</p>
+          <p class="eyebrow">THE CELEBRATION</p>
+          <h3>BUM HALL</h3>
+          <p class="venue-address">Pookkottur<br>Malappuram, Kerala</p>
+          <div class="venue-divider"></div>
+          <p class="venue-date">Sunday, 27 December 2026</p>
+          <p class="venue-time">4:00 PM – 8:00 PM</p>
           <a class="primary-button" href="https://maps.app.goo.gl/m6cZAimPiFoehZr89" target="_blank" rel="noopener noreferrer">VIEW LOCATION ↗</a>
         </div>
         <button id="calendarButton" class="outline-button" type="button">ADD TO CALENDAR</button>
       </div>
     </section>
 
-    <section class="page closing-page">
+    <!-- Closing Section with Couple Picture Backdrop -->
+    <section id="closingSection" class="page closing-page">
+      <div class="couple-bg-layer closing-bg-layer" style="background-image: url('couple-close.jpg');"></div>
       <div class="page-content reveal">
-        <div class="ornament">✦ ❦ ✦</div><p class="eyebrow">WITH LOVE AND GRATITUDE</p><h2>Thank You</h2>
-        <p class="closing-message">Your presence, blessings and prayers<br>are the greatest gifts we could receive.</p>
+        <div class="ornament">✦ ❦ ✦</div>
+        <p class="eyebrow">WITH LOVE AND GRATITUDE</p>
+        <h2>Thank You</h2>
+        <p class="closing-message">Your presence, blessings, and prayers<br>are the greatest gifts we could cherish.</p>
         <h3 class="closing-names">MUHAMMED HISHAM <span>&</span> ANEENA JUBIN</h3>
         <p class="closing-date">27 • 12 • 2026</p>
         <button id="shareButton" class="light-button" type="button">SHARE INVITATION</button>
       </div>
     </section>
+
     <footer>MUHAMMED HISHAM & ANEENA JUBIN • 2026</footer>
   </main>
 
+  <!-- Audio Controls -->
   <audio id="music" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
   <button id="musicButton" class="music-button" type="button" aria-label="Play music" aria-pressed="false" hidden>♪</button>
+
 </body>
 </html>
